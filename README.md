@@ -184,7 +184,7 @@ These three unlock the most valuable economic and satellite data. Each takes abo
 
 ### LLM Provider (optional, for AI-enhanced ideas)
 
-Set `LLM_PROVIDER` to one of: `anthropic`, `openai`, `gemini`, `codex`
+Set `LLM_PROVIDER` to one of: `anthropic`, `openai`, `gemini`, `codex`, `minimax`
 
 | Provider | Key Required | Default Model |
 |----------|-------------|---------------|
@@ -192,8 +192,9 @@ Set `LLM_PROVIDER` to one of: `anthropic`, `openai`, `gemini`, `codex`
 | `openai` | `LLM_API_KEY` | gpt-5.4 |
 | `gemini` | `LLM_API_KEY` | gemini-3.1-pro |
 | `codex` | None (uses `~/.codex/auth.json`) | gpt-5.3-codex |
+| `minimax` | `LLM_API_KEY` | MiniMax-M2.1 |
 
-For Codex, run `npx @openai/codex login` to authenticate via your ChatGPT subscription.
+For Codex, run `npx @openai/codex login` to authenticate via your ChatGPT subscription. MiniMax uses the [Anthropic-compatible API](https://platform.minimax.io/docs/api-reference/text-anthropic-api); get an API key from [MiniMax Platform](https://platform.minimax.io). Optional models: `MiniMax-M2.5`, `MiniMax-M2.1-highspeed`, etc.
 
 ### Telegram Bot + Alerts (optional)
 
@@ -267,6 +268,7 @@ crucix/
 │   │   ├── openai.mjs         # GPT
 │   │   ├── gemini.mjs         # Gemini
 │   │   ├── codex.mjs          # Codex (ChatGPT subscription)
+│   │   ├── minimax.mjs        # MiniMax (Anthropic-compatible)
 │   │   ├── ideas.mjs          # LLM-powered trade idea generation
 │   │   └── index.mjs          # Factory: createLLMProvider()
 │   ├── delta/                 # Change tracking between sweeps
@@ -368,7 +370,7 @@ All settings are in `.env` with sensible defaults:
 |----------|---------|-------------|
 | `PORT` | `3117` | Dashboard server port |
 | `REFRESH_INTERVAL_MINUTES` | `15` | Auto-refresh interval |
-| `LLM_PROVIDER` | disabled | `anthropic`, `openai`, `gemini`, or `codex` |
+| `LLM_PROVIDER` | disabled | `anthropic`, `openai`, `gemini`, `codex`, or `minimax` |
 | `LLM_API_KEY` | — | API key (not needed for codex) |
 | `LLM_MODEL` | per-provider default | Override model selection |
 | `TELEGRAM_BOT_TOKEN` | disabled | For Telegram alerts + bot commands |
